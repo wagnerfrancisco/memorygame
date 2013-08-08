@@ -42,26 +42,35 @@ describe('game', function() {
 			expect(game.grid[1][1].turned).toBe(false);
 		});
 
+		it('should turn card', function() {
+			var card = game.grid[0][0];
+			
+			expect(card.turned).toBe(false);
+			game.turnCard(card);
+			expect(card.turned).toBe(true);
+			game.turnCard(card);
+			expect(card.turned).toBe(false);
+		});
 	});
 
-	describe('deck', function() {
-		it('should create deck with 10 cards', function() {
-			var deck = memorygame.deck({
-				numberOfCards: 4
-			});
+});
 
-			expect(deck.getCards().length).toBe(4);
+describe('deck', function() {
+	it('should create deck with 10 cards', function() {
+		var deck = memorygame.deck({
+			numberOfCards: 4
 		});
 
-		it('should create pairs of cards', function() {
-			var deck = memorygame.deck({
-				numberOfCards: 2
-			});
-
-			var cards = deck.getCards();
-			expect(cards.length).toBe(2);
-			expect(cards[0]).toEqual(cards[1]);
-		})
+		expect(deck.getCards().length).toBe(4);
 	});
-	
+
+	it('should create pairs of cards', function() {
+		var deck = memorygame.deck({
+			numberOfCards: 2
+		});
+
+		var cards = deck.getCards();
+		expect(cards.length).toBe(2);
+		expect(cards[0]).toEqual(cards[1]);
+	})
 });

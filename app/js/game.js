@@ -45,7 +45,11 @@ var memorygame = (function() {
 		var that = {};		
 		var myDeck = spec && spec.deck || deck(spec);
 		var cards = myDeck.getCards();
-		
+
+		that.turnCard = function(card) {
+			card.turned = !card.turned;
+		};
+
 		initializeGrid();
 		
 		return that;
