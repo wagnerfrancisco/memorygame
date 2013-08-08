@@ -15,7 +15,8 @@ var memorygame = (function() {
 		var numberOfCards = spec.numberOfCards;
 		var cards;		
 		var allImages = [
-			'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'
+			'camera.png', 'drawing.png', 'hat.png', 'ink.png', 'light.png', 
+			'movie.png', 'tools.png', 'tshirt.png', 'world.png'
 		];
 
 		var initialize = function() {

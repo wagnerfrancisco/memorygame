@@ -9,8 +9,9 @@
   <div ng-controller="GameController">
     <table>
       <tr ng-repeat="row in game.grid">
-        <td ng-repeat="cell in row">
-          {{cell.image}}
+        <td ng-repeat="card in row">
+          <img ng-src="img/{{card.image}}" width="128" height="128" ng-show="card.turned" />
+          <img src="img/wall.png" width="128" height="128" ng-hide="card.turned" />
         </td>
       </tr>
     </table>
