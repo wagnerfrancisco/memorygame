@@ -2,7 +2,11 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
+angular.module('gameApp.controllers', []).
   controller('GameController', ['$scope', function($scope) {
-  	$scope.game = memorygame.game();
+  	$scope.game = memorygame.game({
+  		numberOfCards: 16
+  	});
+
+  	console.log($scope.game.grid);
   }]);

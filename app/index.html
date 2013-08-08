@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="gameApp">
 <head>
   <meta charset="utf-8">
   <title>Memory Game</title>
@@ -8,9 +8,9 @@
 <body>
   <div ng-controller="GameController">
     <table>
-      <tr ng-repeat="row in game.board">
+      <tr ng-repeat="row in game.grid">
         <td ng-repeat="cell in row">
-          {{cell}}
+          {{cell.image}}
         </td>
       </tr>
     </table>
