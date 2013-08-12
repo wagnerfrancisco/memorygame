@@ -6,6 +6,7 @@ var memorygame = (function() {
 
 		that.image = spec.image;
 		that.turned = false;
+		that.match = false;
 
 		return that;
 	};
@@ -45,9 +46,51 @@ var memorygame = (function() {
 		var that = {};		
 		var myDeck = spec && spec.deck || deck(spec);
 		var cards = myDeck.getCards();
+		var selectedCards = [];
+
+		var turnCard = function(card) {
+			selectedCards.push(card);
+			card.turned = true;
+		};
+
+		var unturnCard = function(card) {			
+				var index = _.indexOf(selectedCards, card);
+				selectedCards.splice(index, 1);
+				card.turned = false;
+		};
+
+		var unturnSelectedCardsIfTheyDontMatch = function() {
+			if (selectedCards.length === 2 && 
+				selectedCards[0].image !== selectedCards[1].image) {
+				unturnCard(selectedCards[1]);
+				unturnCard(selectedCards[0]);
+			}
+		};
+
+		var markSelectedCardsAsMatchedIfTheyMatch = function() {
+			if (selectedCards.length === 2 && 
+				selectedCards[0].image === selectedCards[1].image) {
+				selectedCards[0].matched = true;
+				selectedCards[1].matched = true;
+				selectedCards.splice(0, 2);
+			}
+		};
 
 		that.turnCard = function(card) {
-			card.turned = !card.turned;
+			if (card.matched) {
+				return;
+			}
+
+			var unturning = card.turned;
+
+			if (unturning) {
+				unturnCard(card);
+				return;
+			}
+
+			unturnSelectedCardsIfTheyDontMatch();
+			turnCard(card);
+			markSelectedCardsAsMatchedIfTheyMatch();
 		};
 
 		initializeGrid();

@@ -51,6 +51,73 @@ describe('game', function() {
 			game.turnCard(card);
 			expect(card.turned).toBe(false);
 		});
+
+		it('should not turn matched card', function() {
+			var card = game.grid[0][0];
+			card.matched = true;
+			
+			expect(card.turned).toBe(false);
+			game.turnCard(card);
+			expect(card.turned).toBe(false);
+		});
+
+		it('should not turn cards if they are selected', function() {
+			var card = game.grid[0][0];
+		});
+
+		it('should turn the selected cards back if they dont match', function() {
+			var card1 = game.grid[0][0];
+			var card2 = game.grid[0][1];
+			var card3 = game.grid[1][0];
+
+			expect(card1.turned).toBe(false);
+			expect(card2.turned).toBe(false);
+			expect(card3.turned).toBe(false);
+
+			game.turnCard(card1);
+			game.turnCard(card2);
+			game.turnCard(card3);
+
+			expect(card1.turned).toBe(false);
+			expect(card2.turned).toBe(false);
+			expect(card3.turned).toBe(true);
+		});
+
+		it('should no turn the selected cards back if they match', function() {
+			var card1 = game.grid[0][0];
+			var card2 = game.grid[1][0];
+			var card3 = game.grid[0][1];
+
+			expect(card1.turned).toBe(false);
+			expect(card2.turned).toBe(false);
+			expect(card3.turned).toBe(false);
+
+			game.turnCard(card1);
+			game.turnCard(card2);
+			game.turnCard(card3);
+
+			expect(card1.turned).toBe(true);
+			expect(card2.turned).toBe(true);
+			expect(card3.turned).toBe(true);
+		});
+
+		it('should mark card as matched after matching', function() {
+			var card1 = game.grid[0][0];
+			var card2 = game.grid[1][0];
+
+			expect(card1.turned).toBe(false);
+			expect(card2.turned).toBe(false);
+
+			game.turnCard(card1);
+			game.turnCard(card2);
+
+			expect(card1.turned).toBe(true);
+			expect(card1.matched).toBe(true);
+
+			expect(card2.turned).toBe(true);
+			expect(card2.matched).toBe(true);
+		});
+
 	});
 
 });

@@ -7,11 +7,13 @@
 </head>
 <body>
   <div ng-controller="GameController">
-    <table>
+    <table class="game">
       <tr ng-repeat="row in game.grid">
-        <td ng-repeat="card in row" ng-click="game.turnCard(card)">
-          <img ng-src="img/{{card.image}}" width="128" height="128" ng-show="card.turned" />
-          <img src="img/wall.png" width="128" height="128" ng-hide="card.turned" />
+        <td ng-repeat="card in row" ng-click="game.turnCard(card)" ng-animate="match">
+          <div class="card-wrapper">
+            <img ng-src="img/{{card.image}}" width="128" height="128" ng-show="card.turned" ng-animate="{show: 'animate-show', hide: 'animate-hide'}" class="card" />
+            <img src="img/wall.png" width="128" height="128" ng-hide="card.turned" ng-animate="{show: 'animate-show', hide: 'animate-hide'}" class="card" />
+          </div>
         </td>
       </tr>
     </table>
@@ -20,7 +22,7 @@
   <script src="lib/underscore-min.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/game.js"></script>
-  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular115/angular.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>
   <script src="js/controllers.js"></script>
