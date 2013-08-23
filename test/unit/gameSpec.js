@@ -83,7 +83,7 @@ describe('game', function() {
 			expect(card3.turned).toBe(true);
 		});
 
-		it('should no turn the selected cards back if they match', function() {
+		it('should not turn the selected cards back if they match', function() {
 			var card1 = game.grid[0][0];
 			var card2 = game.grid[1][0];
 			var card3 = game.grid[0][1];
@@ -118,6 +118,69 @@ describe('game', function() {
 			expect(card2.matched).toBe(true);
 		});
 
+		it('should calculate the total of matches', function() {
+			expect(game.totalMatches()).toBe(2);
+		});
+
+		it('should calculate the number of matches', function() {			
+			var card1 = game.grid[0][0],
+				card2 = game.grid[1][0],
+				card3 = game.grid[0][1],
+				card4 = game.grid[1][1];
+
+			expect(game.numberOfMatches()).toBe(0);
+
+			game.turnCard(card1);
+			game.turnCard(card2);
+
+			expect(game.numberOfMatches()).toBe(1);
+
+			game.turnCard(card3);
+			game.turnCard(card4);
+
+			expect(game.numberOfMatches()).toBe(2);
+		});
+
+		it('should increment the number turned cards when turning a card', function() {
+			var card1 = game.grid[0][0],
+				card2 = game.grid[1][0];
+
+			expect(game.numberOfTurnedCards()).toBe(0);
+
+			game.turnCard(card1);
+			expect(game.numberOfTurnedCards()).toBe(1);
+
+			game.turnCard(card2);
+			expect(game.numberOfTurnedCards()).toBe(2);
+		});
+
+		it('should not increment the number of turned cards when unturning', function() {
+			var card1 = game.grid[0][0],
+				card2 = game.grid[1][0];
+
+			expect(game.numberOfTurnedCards()).toBe(0);
+
+			game.turnCard(card1);
+			expect(game.numberOfTurnedCards()).toBe(1);
+
+			game.turnCard(card1);
+			expect(game.numberOfTurnedCards()).toBe(1);
+		});
+
+		it('should return is the game is over', function() {
+			var card1 = game.grid[0][0],
+				card2 = game.grid[1][0],
+				card3 = game.grid[0][1],
+				card4 = game.grid[1][1];
+			
+			game.turnCard(card1);
+			game.turnCard(card2);
+			game.turnCard(card3);
+			expect(game.isOver()).toBe(false);
+
+			game.turnCard(card4);
+			expect(game.isOver()).toBe(true);
+		});
 	});
 
 });

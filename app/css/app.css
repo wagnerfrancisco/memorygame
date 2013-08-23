@@ -1,5 +1,3 @@
-/* app css stylesheet */
-
 html, body {
   height: 100%;
   width: 100%;
@@ -7,12 +5,23 @@ html, body {
 } 
 
 .wrapper {
-  margin: 1%;
-  height: 98%;
-  width: 98%;
+  width: 100%;
 }
 
-table.game {
+.options {
+  float: left;
+  width: 200px;
+  height: 100%;
+  padding-left: 5px;
+  border-right: 1px solid #CCCCCC;
+  background-color: #DEDCD3;
+}
+
+.game {
+  
+}
+
+.game table {
   border-spacing: 0;
 }
 
@@ -54,3 +63,4 @@ table.game {
 .animate-hide-active.animate-hide-active {
   opacity: 0;
 }
+

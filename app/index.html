@@ -5,9 +5,20 @@
   <title>Memory Game</title>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
-<body>
-  <div ng-controller="GameController">
-    <table class="game">
+<body ng-controller="GameController">
+  <div class="options">
+    <h3>Memory Game</h3>
+    <h5>Options</h5>
+    Dimension
+    <input type="text" />
+    <button>Play!</button>
+    <p>
+      Matches: <strong>{{game.numberOfMatches()}}/{{game.totalMatches()}}</strong> <br />
+      Tries: <strong>{{game.numberOfTurnedCards()}}</strong>
+    </p>
+  </div>
+  <div class="game">
+    <table ng-hide="game.isOver()">
       <tr ng-repeat="row in game.grid">
         <td ng-repeat="card in row" ng-click="game.turnCard(card)" ng-animate="match">
           <div class="card-wrapper">
@@ -17,6 +28,9 @@
         </td>
       </tr>
     </table>
+    <div ng-show="game.isOver()">
+      Você ganhou!
+    </div>
   </div>
 
   <script src="lib/underscore-min.js"></script>

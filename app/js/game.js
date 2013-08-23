@@ -47,10 +47,15 @@ var memorygame = (function() {
 			myDeck = spec && spec.deck || deck(spec),
 			cards = myDeck.getCards(),
 			selectedCards = [],
+			matches = 0,
+			totalMatches = cards.length / 2,
+			numberOfTurnedCards = 0,
+			isOver = false,
 
 			turnCard = function(card) {
 				selectedCards.push(card);
 				card.turned = true;
+				numberOfTurnedCards++;
 			},
 
 			unturnCard = function(card) {			
@@ -73,6 +78,12 @@ var memorygame = (function() {
 					selectedCards[0].matched = true;
 					selectedCards[1].matched = true;
 					selectedCards.splice(0, 2);
+
+					matches++;
+
+					if (matches === totalMatches) {
+						isOver = true;
+					}
 				}
 			},
 
@@ -102,6 +113,22 @@ var memorygame = (function() {
 			unturnSelectedCardsIfTheyDontMatch();
 			turnCard(card);
 			markSelectedCardsAsMatchedIfTheyMatch();
+		};
+
+		that.numberOfMatches = function() {
+			return matches;
+		};
+
+		that.isOver = function() {
+			return isOver;
+		};
+
+		that.totalMatches = function() {
+			return totalMatches;
+		};
+
+		that.numberOfTurnedCards = function() {
+			return numberOfTurnedCards;
 		};
 
 		initializeGrid();
