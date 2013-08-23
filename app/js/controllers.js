@@ -4,9 +4,12 @@
 
 angular.module('gameApp.controllers', []).
   controller('GameController', ['$scope', function($scope) {
-  	$scope.game = memorygame.game({
-  		numberOfCards: 16
-  	});
+  	$scope.numberOfCards = 16;
 
-  	console.log($scope.game.grid);
+  	$scope.play = function() {
+  		$scope.game = memorygame.game({
+	  		numberOfCards: $scope.numberOfCards
+	  	});
+  	};
+
   }]);

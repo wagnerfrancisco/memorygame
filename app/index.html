@@ -10,8 +10,8 @@
     <h3>Memory Game</h3>
     <h5>Options</h5>
     Dimension
-    <input type="text" />
-    <button>Play!</button>
+    <input type="text" ng-model="numberOfCards" />
+    <button ng-click="play()">Play!</button>
     <p>
       Matches: <strong>{{game.numberOfMatches()}}/{{game.totalMatches()}}</strong> <br />
       Tries: <strong>{{game.numberOfTurnedCards()}}</strong>
