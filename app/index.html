@@ -6,16 +6,27 @@
   <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body ng-controller="GameController">
-  <div class="options">
-    <h3>Memory Game</h3>
-    <h5>Options</h5>
-    Dimension
-    <input type="text" ng-model="numberOfCards" />
-    <button ng-click="play()">Play!</button>
-    <p>
-      Matches: <strong>{{game.numberOfMatches()}}/{{game.totalMatches()}}</strong> <br />
+  <div class="header">
+    <span class="status">
+      Matches: <strong>{{game.numberOfMatches()}}/{{game.totalMatches()}}</strong>
+    </span>
+    <span class="status">
       Tries: <strong>{{game.numberOfTurnedCards()}}</strong>
-    </p>
+    </span>
+  </div>
+  <div class="options" ng-show="!game || game.isOver()">
+    <div ng-show="game.isOver()">
+      You won!
+    </div>
+    <span class="levels">
+      <a  href="" ng-repeat="mode in modes" ng-click="selectMode(mode)" ng-class="{active: isModeSelected(mode)}">
+        [{{mode.name}}]
+      </a>
+      <!-- <a href="" ng-class="{active: isModeActive('easy')}" ng-click="easyMode()">[easy]</a>
+      <a href="" ng-class="{active: isNormalMode()}" ng-click="normalMode()">[normal]</a>
+      <a href="" ng-class="{active: isHardMode()}" ng-click="hardMode()">[hard]</a> -->
+    </span>
+    <a href="" ng-click="play()" class="play" width="256" height="256">play</a>
   </div>
   <div class="game">
     <table ng-hide="game.isOver()">
@@ -28,9 +39,6 @@
         </td>
       </tr>
     </table>
-    <div ng-show="game.isOver()">
-      Você ganhou!
-    </div>
   </div>
 
   <script src="lib/underscore-min.js"></script>

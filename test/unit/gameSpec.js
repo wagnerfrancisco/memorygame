@@ -186,9 +186,9 @@ describe('game', function() {
 });
 
 describe('deck', function() {
-	it('should create deck with 10 cards', function() {
+	it('should create deck with 4 cards', function() {
 		var deck = memorygame.deck({
-			numberOfCards: 4
+			mode: {name: 'easy', cards: 4}
 		});
 
 		expect(deck.getCards().length).toBe(4);
@@ -196,11 +196,23 @@ describe('deck', function() {
 
 	it('should create pairs of cards', function() {
 		var deck = memorygame.deck({
-			numberOfCards: 2
+			mode: {name: 'supereasy', cards: 2}
 		});
 
 		var cards = deck.getCards();
 		expect(cards.length).toBe(2);
 		expect(cards[0]).toEqual(cards[1]);
 	})
+});
+
+describe('modes', function() {
+	it('should return the available modes', function() {
+		var modes = memorygame.modes;
+		expect(modes.length).toBe(3);
+	});
+
+	it('should return default mode', function() {
+		var defaultMode = memorygame.defaultMode;
+		expect(defaultMode.name).toBe('normal');
+	});
 });
