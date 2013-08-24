@@ -5,8 +5,9 @@
   <title>Memory Game</title>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
-<body ng-controller="GameController">
+<body ng-controller="GameController">  
   <div class="header">
+    <a href="" ng-show="game" ng-click="finalizeGame()">Finalize</a>
     <span class="status">
       Matches: <strong>{{game.numberOfMatches()}}/{{game.totalMatches()}}</strong>
     </span>
@@ -22,12 +23,10 @@
       <a  href="" ng-repeat="mode in modes" ng-click="selectMode(mode)" ng-class="{active: isModeSelected(mode)}">
         [{{mode.name}}]
       </a>
-      <!-- <a href="" ng-class="{active: isModeActive('easy')}" ng-click="easyMode()">[easy]</a>
-      <a href="" ng-class="{active: isNormalMode()}" ng-click="normalMode()">[normal]</a>
-      <a href="" ng-class="{active: isHardMode()}" ng-click="hardMode()">[hard]</a> -->
     </span>
     <a href="" ng-click="play()" class="play" width="256" height="256">play</a>
   </div>
+
   <div class="game">
     <table ng-hide="game.isOver()">
       <tr ng-repeat="row in game.grid">

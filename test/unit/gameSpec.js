@@ -167,7 +167,7 @@ describe('game', function() {
 			expect(game.numberOfTurnedCards()).toBe(1);
 		});
 
-		it('should return is the game is over', function() {
+		it('should return if the game is over', function() {
 			var card1 = game.grid[0][0],
 				card2 = game.grid[1][0],
 				card3 = game.grid[0][1],

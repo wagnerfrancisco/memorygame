@@ -15,6 +15,10 @@ angular.module('gameApp.controllers', []).
 	  	});
   	};
 
+    $scope.finalizeGame = function() {
+      $scope.game = null;
+    };
+
   	$scope.selectMode = function(mode) {
   		$scope.currentMode = mode;
   	};
