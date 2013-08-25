@@ -28,13 +28,10 @@ html, body {
   border: 2px solid #CCCDE0;
 }
 
-.wrapper {
-  width: 100%;
-}
-
 .game {
-  display: inline-block;
   vertical-align: middle;
+  margin: 0 auto;
+  width: 900px;
 }
 
 .game table {

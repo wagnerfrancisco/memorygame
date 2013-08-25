@@ -32,8 +32,8 @@
       <tr ng-repeat="row in game.grid">
         <td ng-repeat="card in row" ng-click="game.turnCard(card)" ng-animate="match">
           <div class="card-wrapper">
-            <img ng-src="img/{{card.image}}" width="128" height="128" ng-show="card.turned" ng-animate="{show: 'animate-show', hide: 'animate-hide'}" class="card" />
-            <img src="img/wall.png" width="128" height="128" ng-hide="card.turned" ng-animate="{show: 'animate-show', hide: 'animate-hide'}" class="card" />
+            <img ng-src="img/{{card.image}}" ng-show="card.turned" ng-animate="{show: 'animate-show', hide: 'animate-hide'}" class="card" />
+            <img src="img/wall.png" ng-hide="card.turned" ng-animate="{show: 'animate-show', hide: 'animate-hide'}" class="card" />
           </div>
         </td>
       </tr>

@@ -4,8 +4,6 @@
 
 angular.module('gameApp.controllers', []).
   controller('GameController', ['$scope', function($scope) {
-  	$scope.numberOfCards = 16;
-
   	$scope.modes = memorygame.modes;
   	$scope.currentMode = memorygame.defaultMode;
 
@@ -25,10 +23,6 @@ angular.module('gameApp.controllers', []).
 
   	$scope.isModeSelected = function(mode) {
   		return mode === $scope.currentMode;
-  	};
-
-  	$scope.isEasyMode = function() {
-  		return $scope.mode === 'easy';
   	};
 
   }]);
